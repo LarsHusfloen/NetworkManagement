@@ -1,9 +1,7 @@
 package Dijkstra;
-
 import java.util.*;
 
 public class Dijkstra {
-
     public static Dictionary[] dijkstra (Graph g, Vertex startingVertex){
         Dictionary<String, Integer> distances = new Hashtable<>();
         Dictionary<String, Vertex> previous = new Hashtable<>();
@@ -20,7 +18,6 @@ public class Dijkstra {
 
         distances.put(startingVertex.getData(), 0);
 
-
         while(queue.size() != 0){
             Vertex current = queue.poll().vertex;
             for (Edge e: current.getEdges()) {
@@ -33,7 +30,6 @@ public class Dijkstra {
                 }
             }
         }
-
         return new Dictionary[]{distances, previous};
     }
 
@@ -42,8 +38,6 @@ public class Dijkstra {
         Dictionary distances = dijkstraDicts[0];
         Dictionary previous = dijkstraDicts[1];
         Integer distance = (Integer) distances.get(targetVertex.getData());
-        System.out.println("Shortest Distance between " + startingVertex.getData() + " and " + targetVertex.getData());
-        System.out.println(distance);
 
         ArrayList<Vertex> path = new ArrayList<>();
         Vertex v = targetVertex;
@@ -51,48 +45,31 @@ public class Dijkstra {
             path.add(0,v);
             v = (Vertex) previous.get(v.getData());
         }
-        System.out.println("Shortest Path");
+        StringBuilder shortestPath = new StringBuilder();
         for (Vertex pathVertex: path){
-            System.out.println(pathVertex.getData());
+            shortestPath.append(pathVertex.getData());
+            shortestPath.append("-");
         }
+        shortestPath.setLength(shortestPath.length() - 1);
+        System.out.println("Shortest Path between " + startingVertex.getData() + " and " + targetVertex.getData());
+        System.out.println("Path: " + "[" + shortestPath + "] " + "Distance: " + distance);
     }
 
     public static void dijkstraResultPrinter(Dictionary[] d){
-        System.out.println("Distances:\n");
+        /* Shows the shortest distance between the input vertex and all other vertices */
+        System.out.println("Distances:");
         for (Enumeration keys = d[0].keys(); keys.hasMoreElements();){
             String nextKey = keys.nextElement().toString();
             System.out.println(nextKey + ": " + d[0].get(nextKey));
         }
-        System.out.println("\nPrevious:\n");
+        /* Shows the previous visited vertex in the shortest path to all other vertices */
+        System.out.println("\nPrevious:");
         for (Enumeration keys = d[1].keys(); keys.hasMoreElements();) {
             String nextKey = keys.nextElement().toString();
             Vertex nextVertex = (Vertex) d[1].get(nextKey);
             System.out.println(nextKey + ": " + nextVertex.getData());
         }
-    }
-
-    public static void main(String[] args){
-        Graph testGraph = new Graph(true, true);
-        Vertex a = testGraph.addVertex("A");
-        Vertex b = testGraph.addVertex("B");
-        Vertex c = testGraph.addVertex("C");
-        Vertex d = testGraph.addVertex("D");
-        Vertex e = testGraph.addVertex("E");
-        Vertex f = testGraph.addVertex("F");
-        Vertex g = testGraph.addVertex("G");
-
-        testGraph.addEdge(a, c, 100);
-        testGraph.addEdge(a, b, 3);
-        testGraph.addEdge(a, d, 4);
-        testGraph.addEdge(d, c, 3);
-        testGraph.addEdge(d, e, 8);
-        testGraph.addEdge(e, b, -2);
-        testGraph.addEdge(e, f, 10);
-        testGraph.addEdge(b, g, 9);
-        testGraph.addEdge(e, g, -50);
-
-        dijkstraResultPrinter(dijkstra(testGraph, a));
-        shortestPathBetween(testGraph, a, g);
+        System.out.println(" ");
     }
 }
 
