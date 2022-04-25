@@ -20,21 +20,21 @@ One of the reason for the success of the TCP/IP internet, is the robustness of t
 
 The following data may be useful for testing (it's the same graph as the table in the distance table above. The format is one edge per line. Each line contains the name of the two endpoints, and the cost.
 
-| START  | END    | COST   |
-| :----: | :----: | :----: |
-| A | B | 10 |
-| A | C | 5  |
-| A | E | 3  |
-| A | F | 12 |
-| B | C | 17 |
-| B | D | 9  |
-| B | E | 17 |
-| B | F | 12 |
-| C | D | 35 |
-| C | E | 3  |
-| C | F | 12 |
-| D | F | 12 |
-| E | F | 12 |
+| START | END | COST |
+|:-----:|:---:|:----:|
+|   A   |  B  |  10  |
+|   A   |  C  |  5   |
+|   A   |  E  |  3   |
+|   A   |  F  |  12  |
+|   B   |  C  |  17  |
+|   B   |  D  |  9   |
+|   B   |  E  |  17  |
+|   B   |  F  |  12  |
+|   C   |  D  |  35  |
+|   C   |  E  |  3   |
+|   C   |  F  |  12  |
+|   D   |  F  |  12  |
+|   E   |  F  |  12  |
 
 ## Hand in
 The link to the Github repository with the source code, the specified output from the programs, and a short note explaining why you made choices you did. Specified output from the programs and the note must be delivered in particular Canvas assignment.
