@@ -1,9 +1,9 @@
 package Dijkstra;
 
 public class Edge {
-    private Vertex start;
-    private Vertex end;
-    private int weight;
+    private final Vertex start;
+    private final Vertex end;
+    private final int weight;
 
     public Edge(Vertex startV, Vertex endV, int inputWeight) {
         this.start = startV;

@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Graph {
-    private ArrayList<Vertex> vertices;
-    private boolean isDirected;
-    private boolean isWeighted;
+    private final ArrayList<Vertex> vertices;
+    private final boolean isDirected;
+    private final boolean isWeighted;
 
     public Graph(boolean inputIsWeighted, boolean inputIsDirected) {
         this.vertices = new ArrayList<>();
@@ -14,7 +14,7 @@ public class Graph {
         this.isDirected = inputIsDirected;
     }
 
-    public ArrayList<Vertex> getVertices(){
+    public ArrayList<Vertex> getVertices() {
         return this.vertices;
     }
 
@@ -24,7 +24,7 @@ public class Graph {
         return newVertex;
     }
 
-    public void removeVertex(Vertex v){
+    public void removeVertex(Vertex v) {
         this.vertices.remove(v);
     }
 
@@ -33,21 +33,20 @@ public class Graph {
             weight = 0;
         }
         v1.addEdge(v2, weight);
-        if(!this.isDirected) {
+        if (!this.isDirected) {
             v2.addEdge(v1, weight);
         }
     }
 
     public void removeEdge(Vertex v1, Vertex v2) {
         v1.removeEdge(v2);
-        if(!this.isDirected) {
+        if (!this.isDirected) {
             v2.removeEdge(v1);
         }
     }
 
     public Vertex getVertexByValue(String value) {
-        //This is weird as well. Not sure what we should do if the vertex doesn't exist in the graph
-        for(Vertex v: this.vertices) {
+        for (Vertex v : this.vertices) {
             if (Objects.equals(v.getData(), value)) {
                 return v;
             }
@@ -56,7 +55,7 @@ public class Graph {
     }
 
     public void print() {
-        for(Vertex v: this.vertices) {
+        for (Vertex v : this.vertices) {
             v.print();
         }
     }
