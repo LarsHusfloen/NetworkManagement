@@ -35,8 +35,8 @@ public class Dijkstra {
 
     public static void shortestPathBetween(Graph g, Vertex startingVertex, Vertex targetVertex){
         Dictionary[] dijkstraDictionaries = dijkstra(g, startingVertex);
-        Dictionary distances = dijkstraDictionaries[0];
-        Dictionary previous = dijkstraDictionaries[1];
+        var distances = dijkstraDictionaries[0];
+        var previous = dijkstraDictionaries[1];
         Integer distance = (Integer) distances.get(targetVertex.getData());
 
         System.out.println("Shortest Path between " + startingVertex.getData() + " and " + targetVertex.getData());
@@ -45,8 +45,8 @@ public class Dijkstra {
 
     public static void dijkstraResultPrinter(Dictionary[] d){
         /* Viser den korteste distansen mellom gjeldene vertex og alle andre */
-        System.out.println("Distances:");
-        for (Enumeration keys = d[0].keys(); keys.hasMoreElements();){
+        System.out.println("Distances to:");
+        for (var keys = d[0].keys(); keys.hasMoreElements();){
             String nextKey = keys.nextElement().toString();
             System.out.println(nextKey + ": " + d[0].get(nextKey));
         }
