@@ -34,11 +34,26 @@ public class Dijkstra {
     }
 
     public static void shortestPathBetween(Graph g, Vertex startingVertex, Vertex targetVertex){
-        Dictionary[] dijkstraDicts = dijkstra(g, startingVertex);
-        Dictionary distances = dijkstraDicts[0];
-        Dictionary previous = dijkstraDicts[1];
+        Dictionary[] dijkstraDictionaries = dijkstra(g, startingVertex);
+        Dictionary distances = dijkstraDictionaries[0];
+        Dictionary previous = dijkstraDictionaries[1];
         Integer distance = (Integer) distances.get(targetVertex.getData());
 
+        System.out.println("Shortest Path between " + startingVertex.getData() + " and " + targetVertex.getData());
+        System.out.println(shortestPath(targetVertex, previous) + "\tDistance: " + distance);
+    }
+
+    public static void dijkstraResultPrinter(Dictionary[] d){
+        /* Viser den korteste distansen mellom gjeldene vertex og alle andre */
+        System.out.println("Distances:");
+        for (Enumeration keys = d[0].keys(); keys.hasMoreElements();){
+            String nextKey = keys.nextElement().toString();
+            System.out.println(nextKey + ": " + d[0].get(nextKey));
+        }
+        System.out.println(" ");
+    }
+
+    private static String shortestPath(Vertex targetVertex, Dictionary previous){
         ArrayList<Vertex> path = new ArrayList<>();
         Vertex v = targetVertex;
         while(!Objects.equals(v.getData(), "Null")){
@@ -51,25 +66,7 @@ public class Dijkstra {
             shortestPath.append("-");
         }
         shortestPath.setLength(shortestPath.length() - 1);
-        System.out.println("Shortest Path between " + startingVertex.getData() + " and " + targetVertex.getData());
-        System.out.println("Path: " + "[" + shortestPath + "] " + "Distance: " + distance);
-    }
-
-    public static void dijkstraResultPrinter(Dictionary[] d){
-        /* Shows the shortest distance between the input vertex and all other vertices */
-        System.out.println("Distances:");
-        for (Enumeration keys = d[0].keys(); keys.hasMoreElements();){
-            String nextKey = keys.nextElement().toString();
-            System.out.println(nextKey + ": " + d[0].get(nextKey));
-        }
-        /* Shows the previous visited vertex in the shortest path to all other vertices */
-        System.out.println("\nPrevious:");
-        for (Enumeration keys = d[1].keys(); keys.hasMoreElements();) {
-            String nextKey = keys.nextElement().toString();
-            Vertex nextVertex = (Vertex) d[1].get(nextKey);
-            System.out.println(nextKey + ": " + nextVertex.getData());
-        }
-        System.out.println(" ");
+        return "Path: " + "[" + shortestPath + "] ";
     }
 }
 
