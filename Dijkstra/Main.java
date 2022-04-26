@@ -41,15 +41,16 @@ public class Main {
 
         network.addEdge(e, f, 12);
 
-        for (Vertex startingVertex : vertices) {
+        for (Vertex startingVertex : network.getVertices()) {
             System.out.println("\t\tVertex " + startingVertex.getData() + ":");
-            for (Vertex endVertex : network.getVertices()) {
+            for (Vertex endVertex : vertices) {
                 Dijkstra.shortestPathBetween(network, startingVertex, endVertex);
                 System.out.println(" ");
             }
             System.out.println("Summary for vertex " + startingVertex.getData() + ":\n");
             Dijkstra.dijkstraResultPrinter(Dijkstra.dijkstra(network, startingVertex));
             System.out.println("-------------------------------");
+            vertices.remove(startingVertex);
         }
     }
 }
