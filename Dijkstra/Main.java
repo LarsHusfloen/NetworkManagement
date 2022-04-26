@@ -42,12 +42,14 @@ public class Main {
         network.addEdge(e, f, 12);
 
         for (Vertex startingVertex : vertices) {
+            System.out.println("\t\tVertex " + startingVertex.getData() + ":");
             for (Vertex endVertex : network.getVertices()) {
                 Dijkstra.shortestPathBetween(network, startingVertex, endVertex);
                 System.out.println(" ");
             }
             System.out.println("Summary for vertex " + startingVertex.getData() + ":\n");
             Dijkstra.dijkstraResultPrinter(Dijkstra.dijkstra(network, startingVertex));
+            System.out.println("-------------------------------");
         }
     }
 }
