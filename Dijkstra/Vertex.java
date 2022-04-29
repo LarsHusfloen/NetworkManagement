@@ -1,6 +1,7 @@
 package Dijkstra;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Vertex {
 
@@ -16,7 +17,7 @@ public class Vertex {
         return this.data;
     }
 
-    public ArrayList<Edge> getEdges() {
+    public List<Edge> getEdges() {
         return this.edges;
     }
 
@@ -29,22 +30,20 @@ public class Vertex {
     }
 
     public void print() {
-        StringBuilder message = new StringBuilder();
-
-        if (this.edges.size() == 0) {
+        if (this.edges.isEmpty()) {
             System.out.println(this.data + " -->");
             return;
         }
+        System.out.println(stringBuilder());
+    }
 
-        for (int i = 0; i < this.edges.size(); i++) {
-            if (i == 0) {
-                message.append(this.edges.get(i).getStart().data).append(" -->  ");
-            }
-            message.append(this.edges.get(i).getEnd().data).append(" (").append(this.edges.get(i).getWeight()).append(")");
-            if (i != this.edges.size() - 1) {
-                message.append(", ");
-            }
-        }
-        System.out.println(message);
+    private String stringBuilder(){
+        StringBuilder message = new StringBuilder();
+
+        message.append(this.edges.get(0).getStart().data).append(" -->  ");
+        this.edges.forEach(edge -> message.append(edge.getEnd().data).append(" (").append(edge.getWeight()).append(")"));
+        message.append(", ");
+
+        return message.toString();
     }
 }
