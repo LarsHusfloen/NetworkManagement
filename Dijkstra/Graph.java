@@ -1,6 +1,7 @@
 package Dijkstra;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Graph {
@@ -14,7 +15,7 @@ public class Graph {
         this.isDirected = inputIsDirected;
     }
 
-    public ArrayList<Vertex> getVertices() {
+    public List<Vertex> getVertices() {
         return this.vertices;
     }
 
@@ -46,17 +47,10 @@ public class Graph {
     }
 
     public Vertex getVertexByValue(String value) {
-        for (Vertex v : this.vertices) {
-            if (Objects.equals(v.getData(), value)) {
-                return v;
-            }
-        }
-        return new Vertex("");
+        return vertices.stream().filter(v -> Objects.equals(v.getData(), value)).findFirst().orElse(new Vertex(""));
     }
 
     public void print() {
-        for (Vertex v : this.vertices) {
-            v.print();
-        }
+        this.vertices.forEach(Vertex::print);
     }
 }
