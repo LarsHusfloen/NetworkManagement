@@ -1,8 +1,8 @@
 package Dijkstra;
 
 public class QueueObject implements Comparable<QueueObject> {
-    public Vertex vertex;
-    public int priority;
+    public final Vertex vertex;
+    public final int priority;
 
     public QueueObject(Vertex v, int p) {
         this.vertex = v;
