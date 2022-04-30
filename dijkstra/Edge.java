@@ -1,4 +1,4 @@
-package Dijkstra;
+package dijkstra;
 
 public class Edge {
     private final Vertex start;
